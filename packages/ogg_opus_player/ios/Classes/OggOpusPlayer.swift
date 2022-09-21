@@ -71,12 +71,14 @@ final class OggOpusPlayer {
     }
     
     init(path: String) throws {
+        #if os(iOS)
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print(error)
         }
+        #endif
         reader = try OggOpusReader(fileAtPath: path)
         
         var status: OSStatus = noErr
