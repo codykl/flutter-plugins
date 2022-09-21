@@ -71,6 +71,7 @@ final class OggOpusPlayer {
     }
     
     init(path: String) throws {
+        [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
         reader = try OggOpusReader(fileAtPath: path)
         
         var status: OSStatus = noErr
